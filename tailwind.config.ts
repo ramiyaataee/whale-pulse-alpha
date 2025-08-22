@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,21 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				// Trading Colors
+				bullish: {
+					DEFAULT: 'hsl(var(--bullish))',
+					foreground: 'hsl(var(--bullish-foreground))'
+				},
+				bearish: {
+					DEFAULT: 'hsl(var(--bearish))',
+					foreground: 'hsl(var(--bearish-foreground))'
+				},
+				// Whale Theme
+				whale: {
+					primary: 'hsl(var(--whale-primary))',
+					secondary: 'hsl(var(--whale-secondary))',
+					accent: 'hsl(var(--whale-accent))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -84,11 +100,51 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'whale-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 0 hsl(var(--whale-primary) / 0.7)'
+					},
+					'50%': {
+						boxShadow: '0 0 0 20px hsl(var(--whale-primary) / 0)'
+					}
+				},
+				'glow-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--primary-glow) / 0.2)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--primary-glow) / 0.4)'
+					}
+				},
+				'slide-up': {
+					from: {
+						transform: 'translateY(20px)',
+						opacity: '0'
+					},
+					to: {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'whale-pulse': 'whale-pulse 2s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+				'slide-up': 'slide-up 0.5s ease-out'
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-whale': 'var(--gradient-whale)',
+				'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-card': 'var(--gradient-card)'
+			},
+			boxShadow: {
+				'whale': 'var(--shadow-whale)',
+				'glow': 'var(--shadow-glow)',
+				'card': 'var(--shadow-card)'
 			}
 		}
 	},
