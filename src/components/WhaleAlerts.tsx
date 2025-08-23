@@ -15,38 +15,24 @@ const WhaleAlerts = () => {
   const [isMonitoring, setIsMonitoring] = useState(false);
 
   useEffect(() => {
-    const monitorWhaleActivity = async () => {
-      try {
-        setIsMonitoring(true);
-        const marketData = await binanceApi.getMarketData(TRACKED_SYMBOLS);
-        
-        if (marketData.length > 0) {
-          // Detect whale activity
-          const newAlerts = await whaleDetector.detectWhaleActivity(marketData);
-          
-          // Update alerts
-          const recentAlerts = whaleDetector.getRecentAlerts(10);
-          setAlerts(recentAlerts);
-          
-          // Generate status report
-          const report = whaleDetector.generateStatusReport(marketData);
-          setStatusReport(report);
-          
-          // Clean old alerts
-          whaleDetector.clearOldAlerts();
-        }
-      } catch (error) {
-        console.error('Whale monitoring error:', error);
-      } finally {
-        setIsMonitoring(false);
+    // Subscribe to whale detector updates
+    const updateAlertsAndStatus = () => {
+      const recentAlerts = whaleDetector.getRecentAlerts(10);
+      setAlerts(recentAlerts);
+      
+      // Get status report from the last analysis
+      const marketData = whaleDetector.getLastMarketData();
+      if (marketData && marketData.length > 0) {
+        const report = whaleDetector.generateStatusReport(marketData);
+        setStatusReport(report);
       }
     };
 
-    // Initial monitoring
-    monitorWhaleActivity();
+    // Initial update
+    updateAlertsAndStatus();
     
-    // Monitor every 15 seconds (like real whale bots)
-    const interval = setInterval(monitorWhaleActivity, 15000);
+    // Update every 30 seconds for UI (worker runs every 5 minutes)
+    const interval = setInterval(updateAlertsAndStatus, 30000);
     
     return () => clearInterval(interval);
   }, []);

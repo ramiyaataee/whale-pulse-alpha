@@ -27,6 +27,7 @@ export interface StatusReport {
 class WhaleDetectionService {
   private previousVolumeData: Map<string, number> = new Map();
   private alerts: WhaleAlert[] = [];
+  private lastMarketData: MarketData[] = [];
   private readonly VOLUME_SPIKE_THRESHOLD = 25; // 25% increase
   private readonly HIGH_VOLUME_SPIKE_THRESHOLD = 100; // 100% increase
   private readonly PRICE_MOVEMENT_THRESHOLD = 5; // 5% price change
@@ -59,6 +60,9 @@ class WhaleDetectionService {
   async detectWhaleActivity(marketData: MarketData[]): Promise<WhaleAlert[]> {
     const newAlerts: WhaleAlert[] = [];
     const now = new Date().toISOString();
+
+    // Store market data for later access
+    this.lastMarketData = marketData;
 
     for (const data of marketData) {
       const volumeIncrease = this.calculateVolumeIncrease(data.symbol, data.volume);
@@ -133,6 +137,10 @@ class WhaleDetectionService {
     this.alerts = this.alerts.filter(alert => {
       return new Date(alert.timestamp).getTime() > oneHourAgo;
     });
+  }
+
+  getLastMarketData(): MarketData[] {
+    return this.lastMarketData;
   }
 }
 

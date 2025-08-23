@@ -3,6 +3,8 @@ import MarketOverview from "@/components/MarketOverview";
 import WhaleAlerts from "@/components/WhaleAlerts";
 import SignalStrength from "@/components/SignalStrength";
 import SystemStatus from "@/components/SystemStatus";
+import WorkerStatus from "@/components/WorkerStatus";
+import IntelligentAnalysis from "@/components/IntelligentAnalysis";
 
 const Index = () => {
   return (
@@ -52,6 +54,18 @@ const Index = () => {
             </div>
           </div>
           <MarketOverview />
+        </section>
+
+        {/* Intelligent Worker */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-semibold">🤖 Intelligent Worker</h2>
+          <WorkerStatus />
+        </section>
+        
+        {/* Intelligent Analysis */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-semibold">🧠 AI Analysis</h2>
+          <IntelligentAnalysis />
         </section>
 
         {/* Analytics Grid */}
