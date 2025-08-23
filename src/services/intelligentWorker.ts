@@ -38,7 +38,7 @@ class IntelligentWorkerService {
   private analysisCallbacks: Array<(analysis: IntelligentAnalysis) => void> = [];
 
   private readonly UPDATE_INTERVAL = 5 * 60 * 1000; // 5 minutes
-  private readonly TRACKED_SYMBOLS = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "ADAUSDT", "XRPUSDT"];
+  private readonly TRACKED_SYMBOLS = ["BTCUSDT", "ETHUSDT", "nas100_i", "SOLUSDT", "ADAUSDT", "XRPUSDT"];
 
   start(): void {
     if (this.isActive) {
