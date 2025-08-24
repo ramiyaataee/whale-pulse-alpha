@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { binanceApi, MarketData } from "@/services/binanceApi";
 
-const TRACKED_SYMBOLS = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT"];
+const TRACKED_SYMBOLS = ["BTCUSDT", "ETHUSDT", "ADAUSDT", "SOLUSDT"];
 
 const MarketOverview = () => {
   const [marketData, setMarketData] = useState<MarketData[]>([]);
