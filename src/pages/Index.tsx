@@ -5,6 +5,7 @@ import SignalStrength from "@/components/SignalStrength";
 import SystemStatus from "@/components/SystemStatus";
 import WorkerStatus from "@/components/WorkerStatus";
 import IntelligentAnalysis from "@/components/IntelligentAnalysis";
+import AdvancedWhaleDashboard from "@/components/AdvancedWhaleDashboard";
 
 const Index = () => {
   return (
@@ -54,6 +55,11 @@ const Index = () => {
             </div>
           </div>
           <MarketOverview />
+        </section>
+
+        {/* Advanced Whale Dashboard */}
+        <section>
+          <AdvancedWhaleDashboard />
         </section>
 
         {/* Intelligent Worker */}
